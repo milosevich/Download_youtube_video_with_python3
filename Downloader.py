@@ -2,8 +2,11 @@ from pytube import YouTube, Playlist
 
 def download_video(yt):
     print('Downloading video...')
-    print(((YouTube(yt)).title))
-    YouTube(yt).streams.first().download()
+    try:
+        print(((YouTube(yt)).title))
+        YouTube(yt).streams.first().download()
+    except KeyError as e:
+        print ('I got a KeyError - reason "%s"' % str(e))
 
 def download_playlist(url_link):
     pl = Playlist(url_link)
